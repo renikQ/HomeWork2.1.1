@@ -10,5 +10,7 @@ public class Main {
         System.out.println(kiaSportage);
         Car hyundaiAvante = new Car("Hyundai", "Avante", 1.6, "оранжевый", 2016, "Южная Корея");
         System.out.println(hyundaiAvante);
+        Car noName = new Car(null, "", 0, "", 0, null);
+        System.out.println(noName);
     }
 }
