@@ -39,8 +39,6 @@ public class Main {
                 new Car.Insurance(LocalDate.now().plusMonths(3), 100f, "121434789"));
         System.out.println(hyundaiAvante);
         System.out.println(hyundaiAvante.getInsurance());
-
-
     }
 
 }

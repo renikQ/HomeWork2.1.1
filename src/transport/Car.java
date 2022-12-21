@@ -203,20 +203,13 @@ public class Car {
             this.insuranceNumber = ValidationUtils.validOrDefault(insuranceNumber, "default");
         }
 
-        public boolean insuranceNumberValid(){
+        public boolean insuranceNumberValid() {
             return insuranceNumber.length() == 9;
         }
+
         public boolean insuranceValidityPeriodValid() {
             return LocalDate.now().isBefore(this.insuranceValidityPeriod);
         }
 
-        @Override
-        public String toString() {
-            return "Insurance{" +
-                    "insuranceValidityPeriod=" + insuranceValidityPeriod +
-                    ", costOfInsurance=" + costOfInsurance +
-                    ", insuranceNumber='" + insuranceNumber + '\'' +
-                    '}';
-        }
     }
 }
