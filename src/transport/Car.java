@@ -2,14 +2,9 @@ package transport;
 
 import java.time.LocalDate;
 
-public class Car {
+public class Car extends Transport {
 
-    private final String brand;
-    private final String model;
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
@@ -22,21 +17,14 @@ public class Car {
 
     public Car(String brand, String model, double engineVolume, String color, int year,
                String country, String transmission, String bodyType, String registrationNumber,
-               int numberOfSeats, boolean winterTires, Key key, Insurance insurance) {
-        this.brand = ValidationUtils.validOrDefault(brand, "default");
-        this.model = ValidationUtils.validOrDefault(model, "default");
-        if (engineVolume <= 0) {
+               int numberOfSeats, boolean winterTires, int maxSpeed, Key key, Insurance insurance) {
+        super(brand, model, year, country, color, maxSpeed);
+                if (engineVolume <= 0) {
             this.engineVolume = 1.5;
         } else {
             this.engineVolume = engineVolume;
         }
-        this.color = ValidationUtils.validOrDefault(color, "белый");
-        if (year <= 0) {
-            this.year = 2000;
-        } else {
-            this.year = year;
-        }
-        this.country = ValidationUtils.validOrDefault(country, "default");
+
         this.transmission = ValidationUtils.validOrDefault(transmission, "default");
         this.bodyType = ValidationUtils.validOrDefault(bodyType, "default");
         this.registrationNumber = ValidationUtils.validOrDefault(registrationNumber, "default");
@@ -50,6 +38,8 @@ public class Car {
         this.insurance = insurance;
 
     }
+
+
 
     public void setSeasonTires() {
         int currentMonth = LocalDate.now().getMonthValue();
@@ -89,14 +79,6 @@ public class Car {
         this.engineVolume = engineVolume;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public String getTransmission() {
         return transmission;
     }
@@ -115,22 +97,6 @@ public class Car {
 
     public boolean getWinterTires() {
         return winterTires;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public String getBodyType() {
@@ -155,7 +121,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return brand + '\'' + model + ", " +
+        return brand + ' ' + model + ", " +
                 year + " года выпуска, " +
                 " сборка в " + country + ", " +
                 color + " цвет кузова, " +
@@ -165,6 +131,7 @@ public class Car {
                 ", регистрационный номер " + registrationNumber +
                 ", количество мест - " + numberOfSeats +
                 ", наличие зимней резины " + winterTires +
+                ", максимальная скорость - " + maxSpeed +
                 ", удаленный запуск " + key.remoteEngineStart +
                 ", бесключевой доступ " + key.keylessAccess +
                 ", страховка действует до " + insurance.insuranceValidityPeriod +
@@ -211,5 +178,11 @@ public class Car {
             return LocalDate.now().isBefore(this.insuranceValidityPeriod);
         }
 
+        @Override
+        public String toString() {
+            return "Cтраховка действует до " + insuranceValidityPeriod +
+                    " р., стоимость страховки " + costOfInsurance +
+                    ", номер страховки " + insuranceNumber;
+        }
     }
 }
