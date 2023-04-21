@@ -13,13 +13,14 @@ public class Car extends Transport {
     private final Key key;
 
     private final Insurance insurance;
+    private String fuelType;
 
 
     public Car(String brand, String model, double engineVolume, String color, int year,
                String country, String transmission, String bodyType, String registrationNumber,
                int numberOfSeats, boolean winterTires, int maxSpeed, Key key, Insurance insurance) {
         super(brand, model, year, country, color, maxSpeed);
-                if (engineVolume <= 0) {
+        if (engineVolume <= 0) {
             this.engineVolume = 1.5;
         } else {
             this.engineVolume = engineVolume;
@@ -39,7 +40,9 @@ public class Car extends Transport {
 
     }
 
-
+    public void refill() {
+        System.out.println("Заправляем автомобиль, топливо - " + fuelType);
+    }
 
     public void setSeasonTires() {
         int currentMonth = LocalDate.now().getMonthValue();
@@ -117,6 +120,21 @@ public class Car extends Transport {
 
     public Insurance getInsurance() {
         return insurance;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        if ("Электричество".contains(fuelType)) {
+            this.fuelType = "Электричество";
+        }
+        else if ("Дизель".contains(fuelType)) {
+            this.fuelType = "Дизель";
+        } else {
+            this.fuelType = "Бензин";
+        }
     }
 
     @Override

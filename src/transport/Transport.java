@@ -8,7 +8,7 @@ public abstract class Transport {
     protected final String country;
     protected String color;
     protected int maxSpeed;
-    protected double fuelPercentage;
+    protected float fuelPercentage;
 
     public Transport(String brand, String model, int year, String country,
                      String color, int maxSpeed) {
@@ -24,6 +24,8 @@ public abstract class Transport {
         this.maxSpeed = Math.max(maxSpeed, 60);
 
     }
+
+    public abstract void refill();
 
     public void setColor(String color) {
         this.color = ValidationUtils.validOrDefault(color, "белый");
@@ -57,12 +59,12 @@ public abstract class Transport {
         return maxSpeed;
     }
 
-    public double getFuelPercentage() {
+    public float getFuelPercentage() {
         return fuelPercentage;
     }
 
-    public void setFuelPercentage(double fuelPercentage) {
-        this.fuelPercentage = fuelPercentage;
+    public void setFuelPercentage(float fuelPercentage) {
+        this.fuelPercentage = Math.max(fuelPercentage, 0.00f);
     }
 
     @Override
@@ -70,6 +72,7 @@ public abstract class Transport {
         return brand + ' ' + model + ", " +
                 year + " года выпуска, " +
                 " сборка в " + country + ", " +
-                color + " цвет кузова, максимальная скорость - " + maxSpeed;
+                color + " цвет кузова, максимальная скорость - " + maxSpeed + ", "
+                + "количество топлива - " + fuelPercentage + "%.";
     }
 }

@@ -1,5 +1,6 @@
 import transport.Bus;
 import transport.Car;
+import transport.Train;
 
 import java.time.LocalDate;
 
@@ -51,6 +52,17 @@ public class Main {
         System.out.println(isuzuBogdanA092);
         Bus liaz5292 = new Bus("ЛиАЗ", "5292", 2022, "Россия", "синий", 110);
         Bus paz3204 = new Bus("ПАЗ", "3204", 2017, "Россия", "синий", 110);
+        Train lastochka = new Train("Ласточка", "В-901", 2011, "Россия", "Красный",
+                301, 3500, 11.00, "Белорусский вокзал",
+                "Минск-Пассажирский", 11);
+        lastochka.setFuelPercentage(89.12f);
+        System.out.println(lastochka);
+        Train Leningrad = new Train("Ленинград", "D-125", 2019, "Россия", "Синий",
+                270, 1700, 07.00, "Ленинградский вокзал",
+                "Ленинград-Пассажирский", 8);
+        bmvZ8.setFuelType("Дизель");
+        System.out.println(bmvZ8.getFuelType());
+        System.out.println(lastochka.getFuelType());
     }
 
 }
